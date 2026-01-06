@@ -63,6 +63,7 @@ ul {
 img {
     max-width: 100%;
     display: block;
+    object-fit: cover; /* Added to ensure images fit properly */
 }
 .container {
     max-width: 1320px;
@@ -758,4 +759,18 @@ input, textarea {
 .link-btn {
     color: var(--primary);
     font-weight: 600;
+}
+/* Fix for empty spaces below sections */
+section {
+    min-height: auto; /* Allow sections to take natural height */
+    position: relative;
+}
+body, html {
+    height: auto;
+    min-height: 100vh;
+}
+/* Ensure images load properly */
+img {
+    loading: lazy; /* Lazy loading for images */
+    background: var(--bg-card); /* Fallback background if image fails */
 }
