@@ -191,6 +191,7 @@ function showCartModal() {
         <form id="checkoutForm">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="WhatsApp Number" required>
             <textarea placeholder="Shipping Address" rows="3" required></textarea>
             <input type="text" placeholder="Payment Details (UPI/Bank)" required>
             <button type="submit" class="btn btn-primary">Place Order</button>
@@ -214,12 +215,14 @@ function showCartModal() {
         e.preventDefault();
         const name = checkoutForm.querySelector('input[type="text"]').value;
         const email = checkoutForm.querySelector('input[type="email"]').value;
+        const whatsapp = checkoutForm.querySelectorAll('input[type="text"]')[1].value;
         const address = checkoutForm.querySelector('textarea').value;
-        const payment = checkoutForm.querySelectorAll('input[type="text"]')[1].value;
+        const payment = checkoutForm.querySelectorAll('input[type="text"]')[2].value;
 
         let orderDetails = `🛍️ <b>New Order Placed!</b>\n\n`;
         orderDetails += `<b>Customer Name:</b> ${name}\n`;
         orderDetails += `<b>Email:</b> ${email}\n`;
+        orderDetails += `<b>WhatsApp:</b> ${whatsapp}\n`;
         orderDetails += `<b>Shipping Address:</b> ${address}\n`;
         orderDetails += `<b>Payment Details:</b> ${payment}\n\n`;
         orderDetails += `<b>Items:</b>\n`;
@@ -250,7 +253,8 @@ if (dom.contactForm) {
        
         const name = dom.contactForm.querySelector('input[type="text"]').value;
         const email = dom.contactForm.querySelector('input[type="email"]').value;
-        const subject = dom.contactForm.querySelectorAll('input[type="text"]')[1].value;
+        const whatsapp = dom.contactForm.querySelectorAll('input[type="text"]')[1].value;
+        const subject = dom.contactForm.querySelectorAll('input[type="text"]')[2].value;
         const message = dom.contactForm.querySelector('textarea').value;
         const btn = dom.contactForm.querySelector('button');
         const originalText = btn.innerText;
@@ -259,6 +263,7 @@ if (dom.contactForm) {
         const teleMsg = `📩 <b>New Contact Form Submission</b>\n\n` +
                         `<b>Name:</b> ${name}\n` +
                         `<b>Email:</b> ${email}\n` +
+                        `<b>WhatsApp:</b> ${whatsapp}\n` +
                         `<b>Subject:</b> ${subject}\n` +
                         `<b>Message:</b> ${message}`;
         const success = await sendToTelegram(teleMsg);
